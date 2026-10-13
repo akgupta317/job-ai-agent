@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+httpx
+python-dotenv
+mcp>=1.9,<2
+langgraph

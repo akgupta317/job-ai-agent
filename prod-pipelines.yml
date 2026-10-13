@@ -1,0 +1,16 @@
+# Prod pipeline: promotes the image (manual approval) and deploys agent + ollama to the prod AKS.
+trigger:
+ branches:
+   include:
+     - 'main'
+
+resources:
+  repositories:
+    - repository: template-pipelines
+      type: git
+      name: template-pipelines
+      ref: main
+      path: prod-backend-promotion
+
+extends:
+  template: prod-backend-promotion/main.yaml@template-pipelines

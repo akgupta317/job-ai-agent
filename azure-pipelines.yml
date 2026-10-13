@@ -1,0 +1,20 @@
+# Dev pipeline: builds the image and deploys ai-visibility-agent AND ollama to AKS.
+# Both are applied from one kustomize overlay (see k8s-deployment-manifests/workflow/backend/ai-visibility-agent).
+# Requires pipeline variables APP_TYPE=backend and SUB_SYSTEM=workflow (set in the Azure DevOps UI).
+trigger:
+ branches:
+   include:
+     - '*'
+   exclude:
+     - 'main'
+
+resources:
+  repositories:
+    - repository: template-pipelines
+      type: git
+      name: template-pipelines
+      ref: main
+      path: ci
+
+extends:
+  template: ci/main.yaml@template-pipelines
